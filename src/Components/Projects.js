@@ -5,7 +5,7 @@ import '../Assets/css/projects.css';
 import hudCard from '../Assets/css/img/hudcard.png';
 import xarvisCover from '../Assets/css/img/xarviscover.png';
 import xpediaCover from '../Assets/css/img/xpediacover.png';
-import xsocietyCover from '../Assets/css/img/xsocietycover.png';
+xsocietyCover from '../Assets/css/img/xsocietycover.png';
 import dreamerzCover from '../Assets/css/img/dreamerzcover.png';
 import zettxCover from '../Assets/css/img/zettxcover.png';
 
@@ -21,7 +21,7 @@ export const Projects = () => {
             flexDirection: 'column',
           }}
         >
-          <a href="#">
+          <button>
             <div>
               <img
                 src={xarvisCover}
@@ -36,10 +36,10 @@ export const Projects = () => {
               />
             </div>
             <div className="content">XARVIS</div>
-          </a>
+          </button>
         </div>
 
-        <a href="#">
+        <button>
           <div
             className="card"
             style={{ backgroundImage: `url(${hudCard})` }}
@@ -58,9 +58,9 @@ export const Projects = () => {
             </div>
             <div className="content">X Pedia</div>
           </div>
-        </a>
+        </button>
 
-        <a href="#">
+        <button>
           <div
             className="card"
             style={{ backgroundImage: `url(${hudCard})` }}
@@ -79,9 +79,9 @@ export const Projects = () => {
             </div>
             <div className="content">X Society</div>
           </div>
-        </a>
+        </button>
 
-        <a href="#">
+        <button>
           <div
             className="card"
             style={{ backgroundImage: `url(${hudCard})` }}
@@ -100,9 +100,9 @@ export const Projects = () => {
             </div>
             <div className="content">Dreamerz</div>
           </div>
-        </a>
+        </button>
 
-        <a href="#">
+        <button>
           <div
             className="card"
             style={{ backgroundImage: `url(${hudCard})` }}
@@ -121,18 +121,19 @@ export const Projects = () => {
             </div>
             <div className="content">Zett X</div>
           </div>
-        </a>
+        </button>
 
         <div
           className="card"
           style={{ backgroundImage: `url(${hudCard})` }}
         >
-          <a href="#">
+          <button>
             <div className="content">Coming soon...</div>
-          </a>
+          </button>
         </div>
       </div>
     </div>
   );
 };
+
 export default Projects;
