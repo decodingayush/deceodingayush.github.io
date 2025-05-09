@@ -5,7 +5,7 @@ import '../Assets/css/projects.css';
 import hudCard from '../Assets/css/img/hudcard.png';
 import xarvisCover from '../Assets/css/img/xarviscover.png';
 import xpediaCover from '../Assets/css/img/xpediacover.png';
-xsocietyCover from '../Assets/css/img/xsocietycover.png';
+import xsocietyCover from '../Assets/css/img/xsocietycover.png'; // Ensure proper import and semicolon
 import dreamerzCover from '../Assets/css/img/dreamerzcover.png';
 import zettxCover from '../Assets/css/img/zettxcover.png';
 
@@ -34,7 +34,7 @@ export const Projects = () => {
                   height: '70%',
                 }}
               />
-            </div>
+ Signals and Systems            </div>
             <div className="content">XARVIS</div>
           </button>
         </div>
