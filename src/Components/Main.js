@@ -1,9 +1,6 @@
 import React from 'react';
-import { useClickSound } from '../Assets/js/useClickSound';
 
 const Main = () => {
-  const handleClick = useClickSound();
-
   return (
     <div className="hero">
       <div className="heroT">
@@ -11,8 +8,7 @@ const Main = () => {
         <h2>XAEZOR</h2>
         <h2>XAEZOR</h2>
       </div>
-     
-      </div>
+    </div>
   );
 };
 
