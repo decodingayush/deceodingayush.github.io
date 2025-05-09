@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useClickSound } from '../Assets/js/useClickSound';
 import './Login.css';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_URL = process.env.REACT_APP_API_URL?.replace(/\/+$/, '') || 'http://localhost:5000';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -18,16 +18,32 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
     setMessage('');
-    
+
     try {
-      const response = await axios.post(`${API_URL}/api/login`, { username, password });
+      const response = await axios.post(
+        `${API_URL}/api/login`,
+        { username, password },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          // Optional: only needed if backend uses cookies
+          // withCredentials: true
+        }
+      );
+
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('username', response.data.username);
       setMessage('Login successful!');
       navigate('/profile');
     } catch (error) {
       console.error('Login error:', error);
-      setMessage(error.response?.data?.message || 'An error occurred during login. Please try again.');
+      setMessage(
+        error.response?.data?.message ||
+        (error.code === 'ERR_NETWORK'
+          ? 'Network error. Please check the backend URL or CORS policy.'
+          : 'An error occurred during login. Please try again.')
+      );
     } finally {
       setIsLoading(false);
     }
@@ -60,7 +76,7 @@ const Login = () => {
             minLength={6}
           />
         </div>
-        <button type="submit" onClick={handleClick()} disabled={isLoading}>
+        <button type="submit" onClick={handleClick} disabled={isLoading}>
           {isLoading ? 'Logging in...' : 'Login'}
         </button>
         <button type="button" onClick={() => navigate('/register')} disabled={isLoading}>
