@@ -103,9 +103,7 @@ const Modify = () => {
     <>
       <div className={styles.profilePage} />
       <div className={styles.content}>
-        <a onClick={handleGoBack} style={{ cursor: 'pointer' }}>
-          <span className={styles['fixed-button']}>Go Back</span>
-        </a>
+        <button onClick={handleGoBack} className={styles['fixed-button']}>Go Back</button>
         <div onClick={handleProfilePictureClick} style={{ cursor: 'pointer' }}>
           {user && user.profilePicture && user.profilePicture !== 'default.png' ? (
             <img src={`${API_URL}${user.profilePicture}`} alt="Profile" className={styles.pfp} />
@@ -137,12 +135,8 @@ const Modify = () => {
             />
           </span>
         </div>
-        <a onClick={handleLogout} style={{ cursor: 'pointer' }}>
-          <span className={styles['fixed-button4']}>Logout</span>
-        </a>
-        <a onClick={handleProfileUpdate} style={{ cursor: 'pointer' }}>
-          <span className={styles['fixed-button5']}>Save Changes</span>
-        </a>
+        <button onClick={handleLogout} className={styles['fixed-button4']}>Logout</button>
+        <button onClick={handleProfileUpdate} className={styles['fixed-button5']}>Save Changes</button>
       </div>
       {message && <p>{message}</p>}
     </>
