@@ -25,7 +25,6 @@ export const Profile = () => {
       setUsername(storedUsername);
 
       try {
-        // Make API call to get latest user data
         const response = await axios.get(`${API_URL}/api/profile`, {
           headers: {
             Authorization: `Bearer ${token}`
@@ -33,9 +32,8 @@ export const Profile = () => {
         });
         
         if (response.data) {
-          console.log('Received user data:', response.data); // Debug log
+          console.log('Received user data:', response.data);
           setUser(response.data);
-          // Update localStorage with latest data
           localStorage.setItem('user', JSON.stringify(response.data));
         }
       } catch (error) {
@@ -64,7 +62,7 @@ export const Profile = () => {
   };
 
   const handleModify = () => {
-    navigate('/modify'); // Redirect to Modify.js
+    navigate('/modify');
   };
 
   return (
@@ -95,12 +93,8 @@ export const Profile = () => {
         <div>
           <span className={styles['fixed-button3']}>About Me: {user ? user.bio || 'No bio set' : 'No bio set'}</span>
         </div>
-        <a onClick={handleLogout} style={{ cursor: 'pointer' }}>
-          <span className={styles['fixed-button4']}>Logout</span>
-        </a>
-        <a onClick={handleModify} style={{ cursor: 'pointer' }}>
-          <span className={styles['fixed-button5']}>Modify</span>
-        </a>
+        <button onClick={handleLogout} className={styles['fixed-button4']}>Logout</button>
+        <button onClick={handleModify} className={styles['fixed-button5']}>Modify</button>
       </div>
       {message && <p>{message}</p>}
     </div>
