@@ -5,6 +5,12 @@
     font-style: normal;
 }
 
+* {
+    cursor: url('../../../public/cursor.cur'), auto;
+  }
+  
+  
+
 body {
     margin: 0;
     font-family: 'Glitch', sans-serif;
@@ -36,6 +42,7 @@ body {
     padding: 12px 0;
     box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease-in-out;
+    z-index: 1000;
 }
 
 /* NAVIGATION LINKS */
@@ -528,31 +535,171 @@ p {
     text-align: center;
 }
 
+.donate p{
+    font-size: 1.7rem;
+}
+
+.fixed-button p{
+    font-size: 2rem;
+}
+.profile-username p{
+    font-size: 2rem;
+}
+.nav-bar p{
+    font-size: 2rem;
+}
 /* Hover Effect */
 .donate:hover {
     opacity: 0.8; /* Slight transparency effect */
    filter: invert(1);
 }
 
-
-
-/* --------------------------------- */
-
-@media (max-width: 1024px){
-    h2{
-        top: 120%;
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    /* Hero Section */
+    .heroT > h2 {
+        font-size: 5rem;
     }
-   *{
-    font-size: 1.2rem;
-   }
-   .heroP{
-    font-size: 1.7rem;
-    top: 50%;
-   }
-   .donate {
-    top: 3%;
+
+    .heroP {
+        font-size: 1em;
+        top: 14em;
+    }
+
+    .heroSubP {
+        top: 10em;
+    }
+
+    .heroSubP p {
+        font-size: 0.9em;
+    }
+
+    /* Navigation Bar */
+    .nav-bar {
+        height: auto;
+        padding: 8px 0;
+    }
+
+    .nav-bar a {
+        font-size: 1.2rem;
+        padding: 8px 12px;
+        width: auto;
+        height: auto;
+    }
+
+    /* Header Buttons */
+    .fixed-button, .donate {
+        font-size: 1.2rem;
+        width: 150px;
+        height: 50px;
+        right: 5%;
+    }
+
+    .donate {
+        left: 5%;
+    }
+
+    /* Content Section */
+    .content-section {
+        padding: 8em 0 6em 0;
+    }
+
+    .content-section p.subt {
+        font-size: 1.5em;
+    }
+
+    .content-section h3 {
+        font-size: 1.8em;
+    }
+
+    .content-section p.subp {
+        font-size: 0.9em;
+        max-width: 90%;
+    }
+
+    /* Accent Lines */
+    .accent-lines > div:nth-child(2) > div:nth-child(1) { left: 15em; }
+    .accent-lines > div:nth-child(2) > div:nth-child(2) { left: 25em; }
+    .accent-lines > div:nth-child(2) > div:nth-child(3) { right: 15em; }
+    .accent-lines > div:nth-child(2) > div:nth-child(4) { right: 25em; }
 }
-.fixed-button{
-    top: 3%;
+
+@media screen and (max-width: 480px) {
+    /* Hero Section */
+    .heroT > h2 {
+        font-size: 4rem;
+        margin-top: -120%;
+    }
+
+    .heroP {
+        font-size: 0.9em;
+        top: 12em;
+    }
+
+    .heroSubP {
+        top: 8em;
+    }
+
+    /* Navigation Bar */
+    .nav-bar {
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .nav-bar p{
+        font-size: 1.1rem;
+        padding: 6px 10px;
+    }
+
+    /* Header Buttons */
+
+    .profile-username{
+        font-size: 1rem;
+    }
+    .fixed-button, .donate p{
+    font-size: 1rem;
+    }
+
+    /* Content Section */
+    .content-section {
+        padding: 6em 0 4em 0;
+    }
+
+    .content-section p.subt {
+        font-size: 1.2em;
+    }
+
+    .content-section h3 {
+        font-size: 1.5em;
+    }
+
+    .content-section p.subp {
+        font-size: 0.8em;
+    }
+
+    /* Accent Lines */
+    .accent-lines > div:nth-child(2) > div:nth-child(1) { left: 10em; }
+    .accent-lines > div:nth-child(2) > div:nth-child(2) { left: 20em; }
+    .accent-lines > div:nth-child(2) > div:nth-child(3) { right: 10em; }
+    .accent-lines > div:nth-child(2) > div:nth-child(4) { right: 20em; }
 }
+
+/* Fix for very small screens */
+@media screen and (max-width: 320px) {
+    .nav-bar {
+        padding: 5px 0;
+    }
+
+    .nav-bar a {
+        font-size: 0.9rem;
+        padding: 4px 8px;
+    }
+
+    .fixed-button, .donate {
+        width: 100px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
 }
+
+
