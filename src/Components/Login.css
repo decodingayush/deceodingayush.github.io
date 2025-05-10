@@ -4,10 +4,11 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-image: url(../Assets/css/img/loginbg.jpg) ;
+  background-image: url(../Assets/css/img/loginbg.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  padding: 1rem;
 }
 
 .login-form {
@@ -16,11 +17,12 @@
   display: flex;
   height: 100%;
   width: 100%;
+  max-width: 500px;
   flex-direction: column;
   gap: 1.2rem;
   justify-content: center;
   align-items: center;
-  min-width: 320px;
+  min-width: 280px;
 }
 
 .login-form h2 {
@@ -32,7 +34,7 @@
 }
 
 .login-form label {
-  color:blueviolet;
+  color: blueviolet;
   margin-bottom: 0.3rem;
   margin-right: 0.7rem;
   font-size: 1.7rem;
@@ -48,7 +50,8 @@
   background-position: center;
   background-repeat: no-repeat;
   font-size: 1.2rem;
-  width: 45vh;
+  width: 100%;
+  max-width: 45vh;
   height: 6vh;
   font-weight: 200;
   color: #ffffff;
@@ -62,13 +65,15 @@
 
 .login-form button {
   padding: 0.7rem;
-  background:transparent;
+  background: transparent;
   background-image: url(../Assets/css/img/btnbg.png);
-background-size: cover;
+  background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;  color: white;
+  background-repeat: no-repeat;
+  color: white;
   border: none;
-  width: 20vh;
+  width: 100%;
+  max-width: 20vh;
   height: 8vh;
   font-size: 0.8rem;
   font-weight: 700;
@@ -97,4 +102,74 @@ background-size: cover;
 .error-message {
   color: #dc3545 !important;
   text-shadow: 1px 1px 2px rgba(220, 53, 69, 0.2) !important;
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 768px) {
+  .login-form {
+    padding: 1.5rem;
+  }
+
+  .login-form h2 {
+    font-size: 5rem;
+    margin-top: 3%;
+  }
+
+  .login-form label {
+    font-size: 1.4rem;
+  }
+
+  .login-form input {
+    font-size: 1rem;
+    height: 5vh;
+  }
+
+  .login-form button {
+    height: 6vh;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .login-form {
+    padding: 1rem;
+  }
+
+  .login-form h2 {
+    font-size: 3.5rem;
+    margin-top: 2%;
+  }
+
+  .login-form label {
+    font-size: 1.2rem;
+  }
+
+  .login-form input {
+    font-size: 0.9rem;
+    height: 4.5vh;
+  }
+
+  .login-form button {
+    height: 8vh;
+    font-size: 0.8rem;
+  }
+}
+
+/* For very small devices */
+@media screen and (max-width: 320px) {
+  .login-form {
+    padding: 0.8rem;
+  }
+
+  .login-form h2 {
+    font-size: 2.5rem;
+  }
+
+  .login-form label {
+    font-size: 1rem;
+  }
+
+  .login-form input {
+    font-size: 0.8rem;
+  }
 } 
