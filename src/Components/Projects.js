@@ -5,7 +5,7 @@ import '../Assets/css/projects.css';
 import hudCard from '../Assets/css/img/hudcard.png';
 import xarvisCover from '../Assets/css/img/xarviscover.png';
 import xpediaCover from '../Assets/css/img/xpediacover.png';
-import xsocietyCover from '../Assets/css/img/xsocietycover.png'; // Ensure proper import and semicolon
+import xsocietyCover from '../Assets/css/img/xsocietycover.png';
 import dreamerzCover from '../Assets/css/img/dreamerzcover.png';
 import zettxCover from '../Assets/css/img/zettxcover.png';
 
@@ -21,7 +21,7 @@ export const Projects = () => {
             flexDirection: 'column',
           }}
         >
-          <button>
+          <a href="#">
             <div>
               <img
                 src={xarvisCover}
@@ -34,12 +34,12 @@ export const Projects = () => {
                   height: '70%',
                 }}
               />
- Signals and Systems            </div>
+            </div>
             <div className="content">XARVIS</div>
-          </button>
+          </a>
         </div>
 
-        <button>
+        <a href="#">
           <div
             className="card"
             style={{ backgroundImage: `url(${hudCard})` }}
@@ -58,9 +58,9 @@ export const Projects = () => {
             </div>
             <div className="content">X Pedia</div>
           </div>
-        </button>
+        </a>
 
-        <button>
+        <a href="#">
           <div
             className="card"
             style={{ backgroundImage: `url(${hudCard})` }}
@@ -79,9 +79,9 @@ export const Projects = () => {
             </div>
             <div className="content">X Society</div>
           </div>
-        </button>
+        </a>
 
-        <button>
+        <a href="#">
           <div
             className="card"
             style={{ backgroundImage: `url(${hudCard})` }}
@@ -100,9 +100,9 @@ export const Projects = () => {
             </div>
             <div className="content">Dreamerz</div>
           </div>
-        </button>
+        </a>
 
-        <button>
+        <a href="#">
           <div
             className="card"
             style={{ backgroundImage: `url(${hudCard})` }}
@@ -121,19 +121,18 @@ export const Projects = () => {
             </div>
             <div className="content">Zett X</div>
           </div>
-        </button>
+        </a>
 
         <div
           className="card"
           style={{ backgroundImage: `url(${hudCard})` }}
         >
-          <button>
+          <a href="#">
             <div className="content">Coming soon...</div>
-          </button>
+          </a>
         </div>
       </div>
     </div>
   );
 };
-
 export default Projects;
