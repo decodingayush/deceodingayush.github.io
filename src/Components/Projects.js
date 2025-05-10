@@ -1,6 +1,8 @@
 import React from 'react';
 import '../Assets/css/hstyle.css';
 import '../Assets/css/projects.css';
+import { Link } from 'react-router-dom';
+import { useClickSound } from '../Assets/hooks/useHoverSound';
 
 import hudCard from '../Assets/css/img/hudcard.png';
 import xarvisCover from '../Assets/css/img/xarviscover.png';
@@ -10,6 +12,8 @@ import dreamerzCover from '../Assets/css/img/dreamerzcover.png';
 import zettxCover from '../Assets/css/img/zettxcover.png';
 
 export const Projects = () => {
+  const playClickSound = useClickSound();
+
   return (
     <div className="main-content">
       <div className="container">

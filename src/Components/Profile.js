@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from '../Assets/css/Profile.module.css';
+import { useClickSound } from '../Assets/hooks/useHoverSound';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
@@ -10,6 +11,7 @@ export const Profile = () => {
   const [username, setUsername] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const playClickSound = useClickSound();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -74,9 +76,7 @@ export const Profile = () => {
     <div className={styles.profileContainer}>
       <div className={styles.profilePage} />
       <div className={styles.content}>
-        <a href="/">
-          <span className={styles['fixed-button']}>Go Back</span>
-        </a>
+        <button onClick={e => { playClickSound(); navigate('/'); }} className={styles['fixed-button']}>Go Back</button>
         <div>
           {user && user.profilePicture && user.profilePicture !== 'default.png' ? (
             <img src={user.profilePicture} alt="Profile" className={styles.pfpx} />
@@ -98,12 +98,8 @@ export const Profile = () => {
         <div>
           <span className={styles['fixed-button3']}>About Me: {user ? user.bio || 'No bio set' : 'No bio set'}</span>
         </div>
-        <a onClick={handleLogout} style={{ cursor: 'pointer' }}>
-          <span className={styles['fixed-button4']}>Logout</span>
-        </a>
-        <a onClick={handleModify} style={{ cursor: 'pointer' }}>
-          <span className={styles['fixed-button5']}>Modify</span>
-        </a>
+        <button onClick={e => { playClickSound(); handleLogout(); }} className={styles['fixed-button4']}>Logout</button>
+        <button onClick={e => { playClickSound(); handleModify(); }} className={styles['fixed-button5']}>Modify</button>
       </div>
       {message && <p>{message}</p>}
     </div>

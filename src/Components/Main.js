@@ -1,6 +1,9 @@
 import React from 'react';
+import { useClickSound } from '../Assets/hooks/useHoverSound';
 
 const Main = () => {
+  const playClickSound = useClickSound();
+
   return (
     <div className="hero">
       <div className="heroT">

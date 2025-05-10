@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useClickSound } from '../Assets/js/useClickSound';
+import { useClickSound, useKeypressSound } from '../Assets/hooks/useHoverSound';
 import './Login.css';
 
 const API_URL = process.env.REACT_APP_API_URL?.replace(/\/+$/, '') || 'http://localhost:5000';
@@ -12,7 +12,8 @@ const Login = () => {
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const handleClick = useClickSound();
+  const playClickSound = useClickSound();
+  const playKeypressSound = useKeypressSound();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -63,6 +64,7 @@ const Login = () => {
             disabled={isLoading}
             minLength={3}
             maxLength={20}
+            onKeyDown={playKeypressSound}
           />
         </div>
         <div>
@@ -74,12 +76,13 @@ const Login = () => {
             required
             disabled={isLoading}
             minLength={6}
+            onKeyDown={playKeypressSound}
           />
         </div>
-        <button type="submit" onClick={handleClick} disabled={isLoading}>
+        <button type="submit" onClick={e => { playClickSound(); handleLogin(e); }} disabled={isLoading}>
           {isLoading ? 'Logging in...' : 'Login'}
         </button>
-        <button type="button" onClick={() => navigate('/register')} disabled={isLoading}>
+        <button type="button" onClick={() => { playClickSound(); navigate('/register'); }} disabled={isLoading}>
           Don't have an account? Sign Up
         </button>
         {message && (

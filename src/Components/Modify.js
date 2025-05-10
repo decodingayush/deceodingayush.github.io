@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from '../Assets/css/Profile.module.css';
+import { useClickSound, useKeypressSound } from '../Assets/hooks/useHoverSound';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
@@ -12,6 +13,8 @@ const Modify = () => {
   const [bio, setBio] = useState('');
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const playClickSound = useClickSound();
+  const playKeypressSound = useKeypressSound();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -103,7 +106,7 @@ const Modify = () => {
     <>
       <div className={styles.profilePage} />
       <div className={styles.content}>
-        <button onClick={handleGoBack} className={styles['fixed-button']}>Go Back</button>
+        <button onClick={e => { playClickSound(); handleGoBack(e); }} className={styles['fixed-button']}>Go Back</button>
         <div onClick={handleProfilePictureClick} style={{ cursor: 'pointer' }}>
           {user && user.profilePicture && user.profilePicture !== 'default.png' ? (
             <img src={`${API_URL}${user.profilePicture}`} alt="Profile" className={styles.pfp} />
@@ -132,11 +135,12 @@ const Modify = () => {
               onChange={(e) => setBio(e.target.value)}
               maxLength="500"
               style={{ width: '100%', marginTop: '5px' }}
+              onKeyDown={playKeypressSound}
             />
           </span>
         </div>
-        <button onClick={handleLogout} className={styles['fixed-button4']}>Logout</button>
-        <button onClick={handleProfileUpdate} className={styles['fixed-button5']}>Save Changes</button>
+        <button onClick={e => { playClickSound(); handleLogout(e); }} className={styles['fixed-button4']}>Logout</button>
+        <button onClick={e => { playClickSound(); handleProfileUpdate(e); }} className={styles['fixed-button5']}>Save Changes</button>
       </div>
       {message && <p>{message}</p>}
     </>

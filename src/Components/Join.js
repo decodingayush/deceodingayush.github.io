@@ -1,7 +1,10 @@
 import React from 'react';
 import '../Assets/css/join.css';
+import { useClickSound } from '../Assets/hooks/useHoverSound';
 
 export const Join = () => {
+  const playClickSound = useClickSound();
+
   return (
     <>
       <canvas id="particleCanvas" />
@@ -21,7 +24,9 @@ export const Join = () => {
         </div>
       </div>
       <div className="pfp" /> {/* Changed from <a><span className="pfp" /></a> */}
-      <button className="fixed">Join</button> {/* Changed from <a href="#"><span className="fixed">Join</span></a> */}
+      <a href="#" onClick={playClickSound}>
+        <span className="fixed">Join</span>
+      </a>
     </>
   );
 };
