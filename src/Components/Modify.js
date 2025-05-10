@@ -52,34 +52,60 @@ const Modify = () => {
       return;
     }
 
-    console.log('Token being sent:', token);
-
-    const formData = new FormData();
-    if (profilePicture) {
-      console.log('Uploading profile picture:', profilePicture);
-      formData.append('profilePicture', profilePicture);
-    } else {
-      console.log('No profile picture selected');
-    }
-    formData.append('bio', bio);
-
     try {
-      const response = await axios.put(`${API_URL}/api/profile`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      setUser(response.data.user);
-      setBio(response.data.user.bio);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-      setMessage(response.data.message);
-      setProfilePicture(null);
+      // Update bio if changed
+      if (bio !== (user?.bio || '')) {
+        console.log('Updating bio:', bio);
+        const bioResponse = await axios.patch(
+          `${API_URL}/api/profile`,
+          { bio },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        console.log('Bio update response:', bioResponse.data);
+        setUser(bioResponse.data.user);
+        setBio(bioResponse.data.user.bio);
+        localStorage.setItem('user', JSON.stringify(bioResponse.data.user));
+        setMessage(bioResponse.data.message);
+      }
+
+      // Update profile picture if selected
+      if (profilePicture) {
+        console.log('Uploading profile picture:', profilePicture);
+        const formData = new FormData();
+        formData.append('profilePicture', profilePicture);
+
+        const uploadResponse = await axios.post(
+          `${API_URL}/api/profile/upload`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data',
+            },
+          }
+        );
+        console.log('Profile picture upload response:', uploadResponse.data);
+        const updatedUser = { ...user, profilePicture: uploadResponse.data.filename };
+        setUser(updatedUser);
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        setMessage(uploadResponse.data.message);
+        setProfilePicture(null);
+      }
+
+      if (!profilePicture && bio === (user?.bio || '')) {
+        setMessage('No changes to save');
+      }
+
       setTimeout(() => navigate('/profile'), 1000);
     } catch (error) {
       console.error('Profile update error:', error);
       if (error.response) {
-        setMessage(`Server error: ${error.response.status} - ${error.response.data?.error || 'No error message provided'}`);
+        setMessage(`Server error: ${error.response.status} - ${error.response.data?.error || error.response.data?.message || 'No error message provided'}`);
       } else if (error.request) {
         setMessage('No response received from server. Check if the backend is running.');
       } else {
@@ -106,7 +132,7 @@ const Modify = () => {
         <button onClick={handleGoBack} className={styles['fixed-button']}>Go Back</button>
         <div onClick={handleProfilePictureClick} style={{ cursor: 'pointer' }}>
           {user && user.profilePicture && user.profilePicture !== 'default.png' ? (
-            <img src={`${API_URL}${user.profilePicture}`} alt="Profile" className={styles.pfp} />
+            <img src={user.profilePicture} alt="Profile" className={styles.pfp} />
           ) : (
             <span className={styles.pfp}>Upload Picture</span>
           )}
