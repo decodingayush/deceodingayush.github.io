@@ -25,16 +25,21 @@ export const Profile = () => {
       setUsername(storedUsername);
 
       try {
+        console.log('Fetching user data from:', `${API_URL}/api/profile`);
+        console.log('Token:', token);
         const response = await axios.get(`${API_URL}/api/profile`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
         
+        console.log('API Response:', response);
         if (response.data) {
           console.log('Received user data:', response.data);
           setUser(response.data);
           localStorage.setItem('user', JSON.stringify(response.data));
+        } else {
+          setMessage('No user data received');
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -44,7 +49,7 @@ export const Profile = () => {
           setMessage(`Error fetching user data: ${error.response.status} - ${error.response.data?.message || 'No error message provided'}`);
         } else if (error.request) {
           console.log('No response received:', error.request);
-          setMessage('No response received from server. Check if the backend is running.');
+          setMessage('No response received from server. Check if the backend is running at ' + API_URL);
         } else {
           console.log('Error setting up request:', error.message);
           setMessage('Error setting up request: ' + error.message);
@@ -74,7 +79,7 @@ export const Profile = () => {
         </a>
         <div>
           {user && user.profilePicture && user.profilePicture !== 'default.png' ? (
-            <img src={`${API_URL}${user.profilePicture}`} alt="Profile" className={styles.pfpx} />
+            <img src={user.profilePicture} alt="Profile" className={styles.pfpx} />
           ) : (
             <div>
               <span className={styles.pfpx} />
@@ -93,8 +98,12 @@ export const Profile = () => {
         <div>
           <span className={styles['fixed-button3']}>About Me: {user ? user.bio || 'No bio set' : 'No bio set'}</span>
         </div>
-        <button onClick={handleLogout} className={styles['fixed-button4']}>Logout</button>
-        <button onClick={handleModify} className={styles['fixed-button5']}>Modify</button>
+        <a onClick={handleLogout} style={{ cursor: 'pointer' }}>
+          <span className={styles['fixed-button4']}>Logout</span>
+        </a>
+        <a onClick={handleModify} style={{ cursor: 'pointer' }}>
+          <span className={styles['fixed-button5']}>Modify</span>
+        </a>
       </div>
       {message && <p>{message}</p>}
     </div>
